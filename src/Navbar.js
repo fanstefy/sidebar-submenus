@@ -5,7 +5,7 @@ import logo from './images/logo.svg';
 const Navbar = () => {
     const {openSidebar, openSubmenu, closeSubmenu} = useGlobalContext();
 
-    const handleSubmenu = (e) => {
+    const displaySubmenu = (e) => {
         const center = (e.target.getBoundingClientRect().left + e.target.getBoundingClientRect().right)/2;
         const pageTitle = e.target.textContent;
         openSubmenu(pageTitle, center);
@@ -28,17 +28,17 @@ const Navbar = () => {
                 </div>
                 <ul className='nav-links'>
                     <li>
-                        <button className='link-btn' onMouseOver={handleSubmenu}>
+                        <button className='link-btn' onMouseOver={displaySubmenu}>
                             products
                         </button>
                     </li>
                     <li>
-                        <button className='link-btn' onMouseOver={handleSubmenu}>
+                        <button className='link-btn' onMouseOver={displaySubmenu}>
                             developers
                         </button>
                     </li>
                     <li>
-                        <button className='link-btn' onMouseOver={handleSubmenu}>
+                        <button className='link-btn' onMouseOver={displaySubmenu}>
                             company
                         </button>
                     </li>
