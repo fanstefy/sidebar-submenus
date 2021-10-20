@@ -3,10 +3,22 @@ import { useGlobalContext } from "./context";
 import logo from './images/logo.svg';
 
 const Navbar = () => {
-    const {openSidebar} = useGlobalContext();
+    const {openSidebar, openSubmenu, closeSubmenu} = useGlobalContext();
+
+    const handleSubmenu = (e) => {
+        const center = (e.target.getBoundingClientRect().left + e.target.getBoundingClientRect().right)/2;
+        const pageTitle = e.target.textContent;
+        openSubmenu(pageTitle, center);
+    }
+
+    const handleCloseSubmenu = (e) => {
+        if (!e.target.classList.contains('link-btn')) {            
+            closeSubmenu();
+        }
+    }
 
     return (
-        <nav className='nav'>
+        <nav className='nav' onMouseOver={handleCloseSubmenu}>
             <div className='nav-center'>
                 <div className='nav-header'>
                     <img src={logo} className='nav-logo' alt='logo' />
@@ -16,17 +28,17 @@ const Navbar = () => {
                 </div>
                 <ul className='nav-links'>
                     <li>
-                        <button className='link-btn' >
+                        <button className='link-btn' onMouseOver={handleSubmenu}>
                             products
                         </button>
                     </li>
                     <li>
-                        <button className='link-btn' >
+                        <button className='link-btn' onMouseOver={handleSubmenu}>
                             developers
                         </button>
                     </li>
                     <li>
-                        <button className='link-btn' >
+                        <button className='link-btn' onMouseOver={handleSubmenu}>
                             company
                         </button>
                     </li>
